@@ -1,32 +1,35 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
+//Default static page
+Route::get('/{locale}', function () {
     return view('welcome');
 });
 
+Route::get('setlocale/{locale}', function ($locale) {
 
-//группа маршрутов для админки
-Route::group(['namespace'=>'Admin\Blog','prefix'=>'admin/blog'], function(){
-    //список методов
-    $methods = ['index','edit','store','update','create','destroy'];
+    if (in_array($locale, \Config::get('app.locales'))) {   # Проверяем, что у пользователя выбран доступный язык
+        Session::put('locale', $locale);                    # И устанавливаем его в сессии под именем locale
+    }
 
-    Route::resource('categories','BlogCategorieController')
-        ->only($methods)
-        ->names('admin.blog.categories');
+    return redirect()->back();                              # Редиректим его <s>взад</s> на ту же страницу
 
-    Route::resource('posts','BlogPostController')
-        ->except(['show'])
-        ->names('admin.blog.posts');
 });
+
+
+Route::group(['prefix'=>'{locale?}','name'=>'locale.'], function(){
+
+    //Blogs Admin routes Group
+    Route::group(['namespace'=>'Admin\Blog','prefix'=>'/admin/blog','name'=>'admin.blog.'], function(){
+
+        //Categories routes
+        Route::resource('categories','BlogCategorieController')
+            ->names('admin.blog.categories');
+
+        //Posts routes
+        Route::resource('posts','BlogPostController')
+            ->names('admin.blog.posts');
+    });
+});
+
+//Auth routes
 Auth::routes();
