@@ -7,10 +7,10 @@
 			<div class="card">
 				<div class="card-body">
 					@if($item->exists)
-						<form method="POST" action="{{ route('blog.admin.categories.update',$item->id) }}">
+						<form method="POST" action="{{ route('locale.admin.blog.categories.update',$item->id, $locale) }}">
 							@method('PATCH')
 					@else
-						<form method="POST" action="{{ route('blog.admin.categories.store') }}">
+						<form method="POST" action="{{ route('locale.admin.blog.categories.store', $locale) }}">
 					@endif
 					@csrf
 						<div class="container">
@@ -26,10 +26,10 @@
 
 							<div class="row justify-content-center">
 								<div class="col-md-8">
-									@include('blog.admin.categories.include.item_main_col')
+									@include('admin.blog.categories.include.item_main_col')
 								</div>
 								<div class="col-md-3">
-									@include('blog.admin.categories.include.item_add_col')
+									@include('admin.blog.categories.include.item_add_col')
 								</div>
 							</div>
 						</div>

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <nav class="navbar">
-                    <a class="btn btn-primary" href="{{ route('admin.blog.categories.create') }}">@lang('messages.add')</a>
+                    <a class="btn btn-primary" href="{{ route('locale.admin.blog.categories.create', $locale) }}">@lang('messages.add')</a>
                 </nav>
                 <div class="card">
                     <div class="card-body">

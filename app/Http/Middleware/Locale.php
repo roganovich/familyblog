@@ -19,6 +19,9 @@ class Locale
     {
 
         $locale = $request->segment(1);    # get local form url
+        if(strpos($request->getPathInfo(),'assets') != false){
+            return $next($request);
+        }
         //check locale in languages allowed list
         if(in_array($locale,Config::get('app.locales'))){
             App::setLocale($locale);                 # set local $locale
@@ -34,4 +37,6 @@ class Locale
 
         return $next($request);                  # continue
     }
+
+
 }

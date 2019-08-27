@@ -16,18 +16,18 @@ Route::get('setlocale/{locale}', function ($locale) {
 });
 
 
-Route::group(['prefix'=>'{locale?}','name'=>'locale.'], function(){
+Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
 
     //Blogs Admin routes Group
     Route::group(['namespace'=>'Admin\Blog','prefix'=>'/admin/blog','name'=>'admin.blog.'], function(){
 
         //Categories routes
         Route::resource('categories','BlogCategorieController')
-            ->names('admin.blog.categories');
+            ->names('locale.admin.blog.categories');
 
         //Posts routes
         Route::resource('posts','BlogPostController')
-            ->names('admin.blog.posts');
+            ->names('locale.admin.blog.posts');
     });
 });
 

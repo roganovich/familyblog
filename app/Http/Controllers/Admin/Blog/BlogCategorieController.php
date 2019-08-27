@@ -6,6 +6,7 @@ use App\Models\Blog\BlogCategorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class BlogCategorieController extends Controller
 {
     /**
@@ -16,7 +17,6 @@ class BlogCategorieController extends Controller
     public function index()
     {
         $items = BlogCategorie::orderBy('created_at', 'asc')->get();
-
         return view('admin.blog.categories.index', [
             'items' => $items
         ]);
@@ -29,7 +29,8 @@ class BlogCategorieController extends Controller
      */
     public function create()
     {
-        //
+        $item = new BlogCategorie();
+        return view('admin.blog.categories.create',['item'=>$item]);
     }
 
     /**
@@ -40,7 +41,16 @@ class BlogCategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new BlogCategorie();
+        if($item->create($request->input())){
+            return redirect()
+                ->route('admin.blog.categories.index')
+                ->with(['success'=>'Успешно!']);
+        }else{
+            return back()
+                ->withErrors(['msg'=>"Ошибка сохранения!"])
+                ->withInput();
+        }
     }
 
     /**
