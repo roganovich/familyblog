@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Blog;
 
-use App\Models\Blog\BlogCategorie;
+use App\Models\Blog\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-class BlogCategorieController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class BlogCategorieController extends Controller
      */
     public function index()
     {
-        $items = BlogCategorie::select(['id','title', 'slug', 'description'])
+        $items = Category::select(['id','title', 'slug', 'description'])
             ->orderBy('level','desc')
             ->orderBy('updated_at','asc')
             ->get();
@@ -30,7 +30,7 @@ class BlogCategorieController extends Controller
      */
     public function create()
     {
-        $item = new BlogCategorie();
+        $item = new Category();
         return view('admin.blog.categories.create',['item'=>$item]);
     }
 
@@ -42,7 +42,7 @@ class BlogCategorieController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new BlogCategorie();
+        $item = new Category();
         $data = $request->input();
         $data['slug'] = (empty($data['slug']))?Str::slug($data['title']):$data['slug'];
         if($item->create($data)){
@@ -65,7 +65,7 @@ class BlogCategorieController extends Controller
      */
     public function edit($locale,$id)
     {
-        $item = BlogCategorie::find($id);
+        $item = Category::find($id);
         if(empty($item)){
             return back()
                 ->withErrors(['msg'=>"Запись #{$id} не найдена!"])
@@ -84,7 +84,7 @@ class BlogCategorieController extends Controller
     public function update(Request $request, $locale, $id)
     {
 
-        $item = BlogCategorie::find($id);
+        $item = Category::find($id);
         if(empty($item)){
             return back()
                 ->withErrors(['msg'=>"Запись #{$id} не найдена!"])

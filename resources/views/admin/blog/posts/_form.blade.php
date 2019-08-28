@@ -21,7 +21,11 @@
 						@foreach ($categoryList as $category)
 							<div class="form-group form-check">
 								<label class="form-check-label">
-									<input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}"> {{ $category->title }}
+										@if($category->isCheckInPost($item))
+											<input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" checked="checked"> {{ $category->title }}
+										@else
+											<input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}"> {{ $category->title }}
+										@endIf
 								</label>
 							</div>
 						@endforeach

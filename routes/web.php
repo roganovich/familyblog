@@ -22,11 +22,11 @@ Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
     Route::group(['namespace'=>'Admin\Blog','prefix'=>'/admin/blog','name'=>'admin.blog.'], function(){
 
         //Categories routes
-        Route::resource('categories','BlogCategorieController')
+        Route::resource('categories','CategoryController')
             ->names('locale.admin.blog.categories');
 
         //Posts routes
-        Route::resource('posts','BlogPostController')
+        Route::resource('posts','PostController')
             ->names('locale.admin.blog.posts');
     });
 });

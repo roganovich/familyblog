@@ -3,12 +3,12 @@
 namespace App\Models\Blog;
 
 use App\Models\BlogCategory;
-use App\Models\Blog\BlogPostsCategorie;
+use App\Models\Blog\PostsCategories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BlogPost extends Model
+class Post extends Model
 {
     use SoftDeletes;
 
@@ -25,8 +25,8 @@ class BlogPost extends Model
     ];
 
     public function categories(){
-        return $this->hasMany(BlogPostsCategorie::class,'post_id','id');
-        //return $this->belongsToMany(BlogPostsCategorie::class, 'blog_posts_categories', 'id', 'post_id');
+        return $this->hasMany(PostsCategories::class,'post_id','id');
+        //return $this->belongsToMany(PostsCategories::class, 'blog_posts_categories', 'id', 'post_id');
     }
 
     public function author(){

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Blog;
 
-use App\Models\Blog\BlogPostsCategorie;
-use App\Models\Blog\BlogCategorie;
-use App\Models\Blog\BlogPost;
+use App\Models\Blog\PostsCategorie;
+use App\Models\Blog\Category;
+use App\Models\Blog\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-class BlogPostController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        $items = BlogPost::select(['id','title', 'slug','updated_at'])
+        $items = Post::select(['id','title', 'slug','updated_at'])
             ->orderBy('updated_at','asc')
             ->get();
         return view('admin.blog.posts.index', ['items'=>$items]);
@@ -31,8 +31,8 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        $item = new BlogPost();
-        $categoryList = BlogCategorie::select(['id','title'])
+        $item = new Post();
+        $categoryList = Category::select(['id','title'])
             ->orderBy('level','desc')
             ->orderBy('updated_at','asc')
             ->get();
@@ -48,18 +48,18 @@ class BlogPostController extends Controller
     public function store(Request $request)
     {
 
-        $item = new BlogPost();
+        $item = new Post();
         $data = $request->input();
         $data['author_id'] = 1;
         $data['slug'] = (empty($data['slug']))?Str::slug($data['title']):$data['slug'];
 
-        if($save = BlogPost::create($data)){
-            //Set categoryes to BlogPostsCategorie
-            $items = BlogPostsCategorie::where(['post_id'=>$save->id])->delete();
+        if($save = Post::create($data)){
+            //Set categoryes to PostsCategories
+            $items = PostsCategorie::where(['post_id'=>$save->id])->delete();
             foreach ($data['categories'] as $category){
                 /*$dataCategoryPost['category_id'] = $category;
                 $dataCategoryPost['post_id'] = $save->id;
-                BlogPostsCategorie::create($dataCategoryPost);*/
+                PostsCategories::create($dataCategoryPost);*/
 
                 $model = new BlogPostsCategorie();
                 $model->category_id = $category;
@@ -84,8 +84,8 @@ class BlogPostController extends Controller
      */
     public function edit($locale,$id)
     {
-        $item = BlogPost::find($id);
-        $categoryList = BlogCategorie::select(['id','title'])
+        $item = Post::find($id);
+        $categoryList = Category::select(['id','title'])
             ->orderBy('level','desc')
             ->orderBy('updated_at','asc')
             ->get();
@@ -106,7 +106,7 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, $locale, $id)
     {
-        $item = BlogPost::find($id);
+        $item = Post::find($id);
         if(empty($item)){
             return back()
                 ->withErrors(['msg'=>"Запись #{$id} не найдена!"])

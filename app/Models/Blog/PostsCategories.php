@@ -5,7 +5,7 @@ namespace App\Models\Blog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BlogPostsCategorie extends Model
+class PostsCategories extends Model
 {
     use SoftDeletes;
 
@@ -18,10 +18,10 @@ class BlogPostsCategorie extends Model
     ];
 
     public function category(){
-        return $this->belongsTo(BlogCategorie::class,'category_id','id');
+        return $this->belongsTo(Category::class,'category_id','id');
     }
 
     public function post(){
-        return $this->belongsTo(BlogPost::class,'post_id','id');
+        return $this->belongsTo(Post::class,'post_id','id');
     }
 }
