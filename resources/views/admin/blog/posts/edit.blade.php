@@ -21,10 +21,8 @@
 									@endIf
 
 									<div class="row justify-content-center">
-										<div class="col-md-8">
+										<div class="col-md-12">
 											@include('admin.blog.posts._form')
-										</div>
-										<div class="col-md-3">
 											@include('admin.blog.posts.include.item_add_col')
 										</div>
 									</div>

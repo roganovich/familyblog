@@ -1,8 +1,4 @@
 @if($item->exists)
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
 						<div class="form-group">
 								<label for="id">ID</label>
 								<input name="id" disabled class="form-control" value="{{ $item->id }}"/>
@@ -19,9 +15,4 @@
 								<label for="deleted_at">deleted_at</label>
 								<input type="text" name="deleted_at" disabled class="form-control" value="{{ $item->deleted_at }}"/>
 						</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
 @endif

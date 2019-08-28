@@ -11,10 +11,6 @@
 						<label for="title">@lang('messages.slug')</label>
 						<input type="text" class="form-control" name="slug"  value="{{ old('slug', $item->slug)  }}"/>
 					</div>
-					<div class="form-group">
-						<label for="title">@lang('messages.сontent')</label>
-						<textarea name="content_html" class="form-control">{{ old('content_html', $item->content_html)  }}</textarea>
-					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
@@ -32,10 +28,26 @@
 					</div>
 				</div>
 			</div>
-
-
-
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="title">@lang('messages.сontent')</label>
+						<textarea id="content_html" name="content_html" class="form-control summernote" rows="20">{{ old('content_html', $item->content_html)  }}</textarea>
+					</div>
+				</div>
+			</div>
 			<button type="submit" class="btn btn-primary"/>@lang('messages.save')</button>
 		</div>
 	</div>
+
+
+		<script src="/package/ckeditor/ckeditor.js"></script>
+
+
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			CKEDITOR.replace( 'content_html',{});
+			//ClassicEditor.create( document.querySelector( '#content_html'));
+		});
+	</script>
 
