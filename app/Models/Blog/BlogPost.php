@@ -12,18 +12,32 @@ class BlogPost extends Model
 {
     use SoftDeletes;
 
+    protected $table = "blog_posts";
+
     protected $fillable  = [
         'title',
         'slug',
+        'is_published',
+        'author_id',
         'content_html',
-        'is_published'
+        'updated_at',
+        'created_at'
     ];
 
     public function categories(){
-        return $this->hasMany(BlogPostsCategorie::class,'id','post_id');
+        return $this->hasMany(BlogPostsCategorie::class,'post_id','id');
+        //return $this->belongsToMany(BlogPostsCategorie::class, 'blog_posts_categories', 'id', 'post_id');
     }
 
     public function author(){
         return $this->belongsTo(User::class,'author_id','id');
+    }
+
+    /**
+     * Return all categories of this post
+     * @return array
+     */
+    public function getParentTitleAttribute(){
+        return $this->parentCategory->title ?? ($this->isRoot() ? 'Корень':'?');
     }
 }

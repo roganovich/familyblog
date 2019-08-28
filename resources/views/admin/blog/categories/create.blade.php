@@ -5,13 +5,9 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
+				{{ Breadcrumbs::render('admin.blog.categories.create',['locale'=>$locale]) }}
 				<div class="card-body">
-					@if($item->exists)
-						<form method="POST" action="{{ route('locale.admin.blog.categories.update',$item->id, $locale) }}">
-							@method('PATCH')
-					@else
-						<form method="POST" action="{{ route('locale.admin.blog.categories.store', $locale) }}">
-					@endif
+					<form method="POST" action="{{ route('locale.admin.blog.categories.store', $locale) }}">
 					@csrf
 						<div class="container">
 
@@ -24,13 +20,8 @@
 								</div>
 							@endIf
 
-							<div class="row justify-content-center">
-								<div class="col-md-8">
-									@include('admin.blog.categories.include.item_main_col')
-								</div>
-								<div class="col-md-3">
-									@include('admin.blog.categories.include.item_add_col')
-								</div>
+							<div class="row justify-content-left">
+								@include('admin.blog.categories._form')
 							</div>
 						</div>
 					</form>

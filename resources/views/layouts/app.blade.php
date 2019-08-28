@@ -19,6 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link href="{{ asset('package/open-iconic/font/css/open-iconic-bootstrap.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -35,6 +37,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @lang('messages.сontent')
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('locale.admin.blog.categories.index', $locale) }}">@lang('messages.categories_list')</a>
+                                <a class="dropdown-item" href="{{ route('locale.admin.blog.posts.index', $locale) }}">@lang('messages.posts_list')</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

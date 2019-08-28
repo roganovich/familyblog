@@ -19,7 +19,7 @@ class Locale
     {
 
         $locale = $request->segment(1);    # get local form url
-        if(strpos($request->getPathInfo(),'assets') != false){
+        if(strpos($request->getPathInfo(),'assets') != false || strpos($request->getPathInfo(),'package') != false){
             return $next($request);
         }
         //check locale in languages allowed list

@@ -9,6 +9,14 @@ class BlogPostsCategorie extends Model
 {
     use SoftDeletes;
 
+    protected $table = "blog_posts_categories";
+    public $timestamps = false;
+
+    protected $fillable  = [
+        'category_id',
+        'post_id',
+    ];
+
     public function category(){
         return $this->belongsTo(BlogCategorie::class,'category_id','id');
     }

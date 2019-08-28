@@ -9,11 +9,15 @@ class BlogCategorie extends Model
 {
     use SoftDeletes;
 
+    protected $table = "blog_categories";
+
     protected $fillable  = [
         'title',
         'slug',
         'description',
         'level',
-        'is_published'
+        'is_published',
+        'updated_at',
+        'created_at'
     ];
 }
