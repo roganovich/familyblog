@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <div>
                                  <a href="{{ route('locale.blog.posts.show',['id'=>$item->id,'locale'=>$locale]) }}" title="@lang('messages.show')">
-                                    <h2>{{ $item->title }}</h2>
+                                    <span>{{ $item->title }}</span>
                                  </a>
                             </div>
                             <div>

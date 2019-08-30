@@ -37,3 +37,4 @@ class BlogCategories extends Migration
         Schema::dropIfExists('blog_categories');
     }
 }
+

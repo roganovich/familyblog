@@ -1,0 +1,8 @@
+
+.introItem{
+    height: 200px;
+}
+.introItem .bodyItem{
+    height: 50px;
+    overflow: hidden;
+}

@@ -4,10 +4,10 @@ namespace App\Models\Blog;
 
 
 
+use App\Models\Blog\PostsCategories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Blog\Post;
-use App\Models\Blog\PostsCategories;
 
 class Category extends Model
 {
@@ -27,5 +27,9 @@ class Category extends Model
 
     public function isCheckInPost(Post $post){
         return (PostsCategories::where(['category_id'=>$this->id,'post_id'=>$post->id])->count());
+    }
+
+    public function posts(){
+        return $this->hasMany(PostsCategories::class,'category_id','id');
     }
 }

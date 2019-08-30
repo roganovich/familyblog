@@ -37,7 +37,7 @@ Breadcrumbs::register('blog.categories.index', function ($breadcrumbs,$items) {
 
 Breadcrumbs::register('blog.categories.show', function ($breadcrumbs,$items) {
     $breadcrumbs->parent('blog.categories.index',$items);
-    $breadcrumbs->push(__('messages.categories_show').': '.$items['title'] , route('locale.blog.categories.show',['id'=>$items['id'],'locale'=>$items['locale']]));
+    $breadcrumbs->push($items['title'] , route('locale.blog.categories.show',['slug'=>$items['slug'],'locale'=>$items['locale']]));
 });
 
 //Posts Breadcrumbs
@@ -47,5 +47,5 @@ Breadcrumbs::register('blog.posts.index', function ($breadcrumbs,$items) {
 
 Breadcrumbs::register('blog.posts.show', function ($breadcrumbs,$items) {
     $breadcrumbs->parent('blog.posts.index',$items);
-    $breadcrumbs->push(__('messages.posts_show').': '.$items['title'] , route('locale.blog.posts.show',['id'=>$items['id'],'locale'=>$items['locale']]));
+    $breadcrumbs->push($items['title'] , route('locale.blog.posts.show',['slug'=>$items['slug'],'locale'=>$items['locale']]));
 });

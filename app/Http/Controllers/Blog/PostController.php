@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $items = Post::select(['id', 'title', 'content_html', 'slug','updated_at'])
+        $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at'])
             ->orderBy('updated_at','asc')
             ->get();
         return view('blog.posts.index', ['items'=>$items]);
@@ -29,15 +29,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($locale, $id)
+    public function show($locale, $slug)
     {
-        $item = Post::find($id);
+
+        $item = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','author_id'])->where(['slug'=>$slug])->first();
+        $itemCategories = $item->categories;
         if(empty($item)){
             return back()
-                ->withErrors(['msg'=>"Запись #{$id} не найдена!"])
+                ->withErrors(['msg'=>"Запись #{$slug} не найдена!"])
                 ->withInput();
         }
-        return view('blog.posts.show',['item' => $item]);
+        return view('blog.posts.show',['item' => $item,'itemCategories'=>$itemCategories]);
     }
 
 }

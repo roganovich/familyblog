@@ -18,6 +18,7 @@ class BlogPosts extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('slug')->unique();
             $table->string('title');
+            $table->text('intro_html');
             $table->text('content_html');
             $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();

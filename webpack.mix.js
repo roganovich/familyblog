@@ -16,4 +16,5 @@ mix.js([
     'node_modules/bootstrap/dist/js/bootstrap.js',
     'resources/assets/js/app.js'], 'public/js');
 mix.sass('resources/assets/sass/app.scss', 'public/css')
-    .sass('resources/assets/sass/admin.scss', 'public/css/admin');
+    .sass('resources/assets/sass/admin.scss', 'public/css/admin')
+    .sass('resources/assets/sass/blog.scss', 'public/css/blog');
