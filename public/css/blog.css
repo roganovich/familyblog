@@ -1,8 +1,18 @@
+.blogcontainer .post_item {
+  height: 350px;
+}
 
-.introItem{
-    height: 200px;
+.blogcontainer h2 {
+  line-height: 1;
 }
-.introItem .bodyItem{
-    height: 50px;
-    overflow: hidden;
+
+.blogcontainer .post_html {
+  height: 100px;
+  overflow: hidden;
 }
+
+.blogcontainer .post_categories {
+  height: 52px;
+  overflow: hidden;
+}
+

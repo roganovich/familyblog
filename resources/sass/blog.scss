@@ -1,0 +1,16 @@
+.blogcontainer{
+  .post_item{
+    height: 350px;
+  }
+  h2{
+    line-height: 1;
+  }
+  .post_html{
+    height: 100px;
+    overflow: hidden;
+  }
+  .post_categories{
+    height: 52px;
+    overflow: hidden;
+  }
+}
