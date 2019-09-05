@@ -27,6 +27,12 @@ Breadcrumbs::register('admin.blog.posts.edit', function ($breadcrumbs,$items) {
     $breadcrumbs->parent('admin.blog.posts.index',$items);
     $breadcrumbs->push(__('messages.posts_edit').': '.$items['title'] , route('locale.admin.blog.posts.edit',['id'=>$items['id'],'locale'=>$items['locale']]));
 });
+//Images Breadcrumbs
+Breadcrumbs::register('admin.images.index', function ($breadcrumbs,$items) {
+    $breadcrumbs->push(__('messages.images') , route('locale.admin.images.index',$items['locale']));
+});
+
+
 
 //*******************************************Blog Group ********************************************************/
 

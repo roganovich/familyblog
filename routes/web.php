@@ -18,16 +18,25 @@ Route::get('setlocale/{locale}', function ($locale) {
 Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
 
     //Blogs Admin routes Group
-    Route::group(['namespace'=>'Admin\Blog','prefix'=>'/admin/blog','name'=>'admin.blog.'], function(){
+    Route::group(['namespace'=>'Admin','prefix'=>'/admin','name'=>'admin.'], function(){
 
         //Categories routes
-        Route::resource('categories','CategoryController')
-            ->names('locale.admin.blog.categories');
+        Route::resource('images','ImageController')
+            ->names('locale.admin.images');
 
-        //Posts routes
-        Route::resource('posts','PostController')
-            ->names('locale.admin.blog.posts');
+        //Blogs Admin routes Group
+        Route::group(['namespace'=>'Blog','prefix'=>'/blog','name'=>'admin.blog.'], function(){
+
+            //Categories routes
+            Route::resource('categories','CategoryController')
+                ->names('locale.admin.blog.categories');
+
+            //Posts routes
+            Route::resource('posts','PostController')
+                ->names('locale.admin.blog.posts');
+        });
     });
+
 
 
     //Blogs Frontend routes Group
