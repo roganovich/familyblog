@@ -1,16 +1,36 @@
 .blogcontainer{
-  .post_item{
-    height: 350px;
+    .post_item{
+      position: relative;
+      height: 350px;
+    }
+    .post_show{
+      position: relative;
+    }
+    h2{
+      line-height: 1;
+    }
+    .post_html{
+      height: 100px;
+      overflow: hidden;
+    }
+    .post_categories{
+      height: 52px;
+      overflow: hidden;
+    }
+    .post_attr{
+      .post_author{
+        position: absolute;
+        left: 20px;
+        bottom: 5px;
+        width: 150px;
+        text-align: left;
+      }
+      .post_date{
+        position: absolute;
+        right: 20px;
+        bottom: 5px;
+        width: 150px;
+        text-align: right;
+      }
+    }
   }
-  h2{
-    line-height: 1;
-  }
-  .post_html{
-    height: 100px;
-    overflow: hidden;
-  }
-  .post_categories{
-    height: 52px;
-    overflow: hidden;
-  }
-}

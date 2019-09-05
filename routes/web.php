@@ -39,9 +39,10 @@ Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
             ->names('locale.blog.categories');
 
         //Frontend Posts routes
-        Route::resource('posts','PostController')
-            ->only(['index','show'])
-            ->names('locale.blog.posts');
+        Route::get('/posts', 'PostController@index')->name('locale.blog.posts.index');
+        Route::get('/posts/show/{slug}', 'PostController@show')->name('locale.blog.posts.show');
+        Route::get('/posts/author/{author_id}', 'PostController@author')->name('locale.blog.posts.author');
+        Route::get('/posts/date/{date}', 'PostController@date')->name('locale.blog.posts.date');
     });
 });
 
