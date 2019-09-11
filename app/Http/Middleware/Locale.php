@@ -6,6 +6,7 @@ use Config;
 use Session;
 use Closure;
 
+
 class Locale
 {
     /**
@@ -27,14 +28,17 @@ class Locale
             App::setLocale($locale);                 # set local $locale
         }else{
             $url = $request->url();
-            if (count($request->segments()) > 1) {
+            $url_path = explode('/',$url);
+            $segment = $request->segments();
+            if (count($segment) > 1) {
+                if(in_array('admin',$segment))return $next($request);
                 $url =  str_replace(parse_url($url)['path'], '/ru'.parse_url($url)['path'], $url) ;
             } else {
+                if(in_array('admin',$url_path))return $next($request);
                 $url =  '/ru' ;
             }
             return redirect($url);
         }
-
         return $next($request);                  # continue
     }
 

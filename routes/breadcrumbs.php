@@ -2,16 +2,16 @@
 
 //*******************************************Admin Group ********************************************************/
 //Categories Breadcrumbs
-Breadcrumbs::register('admin.blog.categories.index', function ($breadcrumbs,$items) {
-    $breadcrumbs->push(__('messages.categories_list') , route('locale.admin.blog.categories.index',$items['locale']));
+Breadcrumbs::register('admin.blog.categories.index', function ($breadcrumbs) {
+    $breadcrumbs->push(__('messages.categories_list') , route('admin.blog.categories.index'));
 });
 Breadcrumbs::register('admin.blog.categories.create', function ($breadcrumbs,$items) {
     $breadcrumbs->parent('admin.blog.categories.index',$items);
-    $breadcrumbs->push(__('messages.categories_create') , route('locale.admin.blog.categories.create',$items['locale']));
+    $breadcrumbs->push(__('messages.categories_create') , route('admin.blog.categories.create'));
 });
 Breadcrumbs::register('admin.blog.categories.edit', function ($breadcrumbs,$items) {
     $breadcrumbs->parent('admin.blog.categories.index',$items);
-    $breadcrumbs->push(__('messages.categories_edit').': '.$items['title'] , route('locale.admin.blog.categories.edit',['id'=>$items['id'],'locale'=>$items['locale']]));
+    $breadcrumbs->push(__('messages.categories_edit').': '.$items['title'] , route('admin.blog.categories.edit',['id'=>$items['id']]));
 });
 
 //Posts Breadcrumbs

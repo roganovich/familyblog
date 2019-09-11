@@ -44,8 +44,8 @@
                                 @lang('messages.сontent')
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('locale.admin.blog.categories.index', $locale) }}">@lang('messages.categories_list')</a>
-                                <a class="dropdown-item" href="{{ route('locale.admin.blog.posts.index', $locale) }}">@lang('messages.posts_list')</a>
+                                <a class="dropdown-item" href="{{ route('admin.blog.categories.index') }}">@lang('messages.categories_list')</a>
+                                <a class="dropdown-item" href="{{ route('admin.blog.posts.index') }}">@lang('messages.posts_list')</a>
                                 <div class="dropdown-divider"></div>
                             </div>
                         </li>

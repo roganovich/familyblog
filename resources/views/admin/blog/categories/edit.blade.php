@@ -4,9 +4,9 @@
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
-					{{ Breadcrumbs::render('admin.blog.categories.edit',['id'=>$item->id,'title'=>$item->title,'locale'=>$locale]) }}
+					{{ Breadcrumbs::render('admin.blog.categories.edit',['id'=>$item->id,'title'=>$item->title]) }}
 					<div class="card-body">
-							<form method="POST" action="{{ route('locale.admin.blog.categories.update',['id'=>$item->id,'locale'=>$locale]) }}">
+							<form method="POST" action="{{ route('locale.admin.blog.categories.update',['id'=>$item->id]) }}">
 								@method('PATCH')
 								@csrf
 								<div class="container">

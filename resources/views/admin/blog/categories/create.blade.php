@@ -5,7 +5,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
-				{{ Breadcrumbs::render('admin.blog.categories.create',['locale'=>$locale]) }}
+				{{ Breadcrumbs::render('admin.blog.categories.create') }}
 				<div class="card-body">
 					<form method="POST" action="{{ route('locale.admin.blog.categories.store', $locale) }}">
 					@csrf
