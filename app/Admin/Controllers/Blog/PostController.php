@@ -5,7 +5,7 @@ namespace App\Admin\Controllers\Blog;
 use App\Models\Blog\PostsCategorie;
 use App\Models\Blog\Category;
 use App\Models\Blog\Post;
-use App\Models\Image;
+use App\Models\Uploader;
 use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -29,10 +29,18 @@ class PostController extends AdminController
         $grid = new Grid(new Post);
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('category_id', __('messages.category_id'));
+        $grid->categories(__('messages.categories'))->display(function ($categories) {
+            $count = count($categories);
+            return "<span class='label label-warning'>{$count}</span>";
+        });
         $grid->column('title', __('messages.title'));
-        $grid->column('author_id', __('messages.author_id'));
-        $grid->column('is_published', __('messages.is_published'));
+
+        $grid->column('author', __('messages.author'))->display(function ($value) {
+            return $value['name'];
+        });
+        $grid->column('is_published', __('messages.is_published'))->display(function ($value) {
+            return ($value)?__('messages.yes'):__('messages.no');
+        });
         $grid->column('updated_at', __('messages.updated_at'));
 
         return $grid;
@@ -75,7 +83,8 @@ class PostController extends AdminController
         $form->listbox('category_id', trans('messages.category_id'))->options(Category::all()->pluck('title', 'id'));
         $form->text('title', __('messages.title'));
         $form->text('slug', __('messages.slug'));
-        $form->textarea('content_html', __('messages.content_html'));
+        //$form->textarea('content_html', __('messages.content_html'));
+        $form->ckeditor('content_html', __('messages.content_html'))->options(['lang' => 'ru', 'height' => 500]);
         $form->select('author_id', trans('messages.author_id'))->options(User::all()->pluck('name', 'id'));
         $form->select('is_published', trans('messages.is_published'))->options(['1'=>'Да','0'=>'Нет']);
         $form->display('updated_at', __('messages.updated_at'));
@@ -86,7 +95,7 @@ class PostController extends AdminController
     public function update($id)
     {
 
-        $imgModel = new Image();
+        $imgModel = new Uploader();
         $imgModel->object = Post::findOrFail($id);
         $imgModel->images = request()->file('images');
         $imgModel->uploadload();

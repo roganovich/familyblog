@@ -33,11 +33,5 @@ class Post extends Model
         return $this->belongsTo(User::class,'author_id','id');
     }
 
-    /**
-     * Return all categories of this post
-     * @return array
-     */
-    public function getParentTitleAttribute(){
-        return $this->parentCategory->title ?? ($this->isRoot() ? 'Корень':'?');
-    }
+
 }

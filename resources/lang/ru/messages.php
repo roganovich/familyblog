@@ -4,6 +4,7 @@ return [
     'сontent' => 'Содержание',
     'category' => 'Категории',
 
+    'count' => 'кол-во',
     'add' => 'Добавить',
     'save' => 'Сохранить',
     'edit' => 'Изменить',
@@ -18,8 +19,10 @@ return [
     'updated_at' => 'Обновлен',
     'deleted_at' => 'Удален',
     'is_published' => 'Опубликован?',
+    'author' => 'Автор',
 
     //Сategories
+    'categories' => 'Категории',
     'categories_list' => 'Список категорий',
     'categories_create' => 'Добавить категорию',
     'categories_edit' => 'Обновление категории',

@@ -5,6 +5,7 @@ Route::get('/{locale}', function () {
     return view('welcome');
 });
 
+
 //chage locale. matual route
 Route::get('setlocale/{locale}', function ($locale) {
     if (in_array($locale, \Config::get('app.locales'))) {   # Проверяем, что у пользователя выбран доступный язык
