@@ -10,6 +10,7 @@ use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -55,13 +56,45 @@ class PostController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Post::findOrFail($id));
 
-        $show->field('id', __('messages.ID'));
+        $model = Post::findOrFail($id);
+        $show = new Show($model);
+
+        //$show->field('id', __('messages.ID'));
         $show->field('title', __('messages.title'));
         $show->field('slug', __('messages.slug'));
+        $show->divider();
         $show->field('content_html', __('messages.content_html'));
-        $show->field('author_id', __('messages.author_id'));
+        $show->divider();
+
+        $show->categories()->as(function ($categories) {
+            $str = '';
+            foreach ($categories as $category) {
+                $str .='<span class=\'label label-warning\'>';
+                $str .= '<a href="{{ route(\'admin.blog.categories.edit\',[\'id\'=> $category->id) }}" title="'.$category->title.'">';
+                    $category->title;
+                $str .= '</a>';
+                $str .='</span>';
+            }
+            return $str;
+        });
+
+        $show->divider();
+
+        $show->images()->as(function ($images) {
+            $str = '';
+            foreach ($images as $image) {
+                $str .='<img src="'.$image->img_path.'"/>';
+            }
+            echo ($str);
+        });
+
+        $show->divider();
+
+        $show->author()->as(function ($author) {
+            return $author->name;
+        });
+
         $show->field('is_published', __('messages.is_published'));
         $show->field('updated_at', __('messages.updated_at'));
 
@@ -80,7 +113,7 @@ class PostController extends AdminController
 
         $form->display('id', __('messages.ID'));
         $form->multipleImage('images', trans('messages.images'));
-        $form->listbox('category_id', trans('messages.category_id'))->options(Category::all()->pluck('title', 'id'));
+        $form->multipleSelect('categories', trans('messages.category_id'))->options(Category::all()->pluck('title', 'id'));
         $form->text('title', __('messages.title'));
         $form->text('slug', __('messages.slug'));
         //$form->textarea('content_html', __('messages.content_html'));
