@@ -4,26 +4,24 @@ namespace App\Http\Controllers\Blog;
 
 use App\Models\Blog\Category;
 use App\Models\Blog\Post;
+use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Encore\Admin\Facades\Admin;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','author_id'])
-            ->orderBy('updated_at','asc')
-            ->paginate(9);
-        return view('blog.posts.index', ['items'=>$items]);
+    public function __construct(Request $request) {
+        parent::__construct($request);
+        $this->blogPostRepository = app(BlogPostRepository::class);
     }
 
-
+    public function index()
+    {
+        $items = $this->blogPostRepository->getAllWithPaginator(9);
+        return view('blog.posts.index', ['items'=>$items]);
+    }
     /**
      * Display the specified resource.
      *

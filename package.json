@@ -26,6 +26,7 @@
         "sass-loader": "^7.1.0"
     },
     "dependencies": {
+        "jscroll": "^2.4.1",
         "uikit": "^3.1.9",
         "vuetify": "^2.0.11"
     }

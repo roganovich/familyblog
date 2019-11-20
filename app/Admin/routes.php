@@ -4,17 +4,16 @@ use Illuminate\Routing\Router;
 
 
 
+//Blogs Moderate routes Group
+Route::group(['namespace'=>'App\admin\Controllers','prefix'=>'/admin','name'=>'admin.'], function(){
 
-//Blogs Admin routes Group
-Route::group(['namespace'=>'App\Admin\Controllers','prefix'=>'/admin','name'=>'admin.'], function(){
-
-    Route::get('/', 'HomeController@index')->name('admin.index');
+    Route::get('/', 'HomeController@index')->name('admin.console');
 
     //Categories routes
     Route::resource('images','ImageController')
         ->names('admin.images');
 
-    //Blogs Admin routes Group
+    //Blogs Moderate routes Group
     Route::group(['namespace'=>'Blog','prefix'=>'/blog','name'=>'admin.blog.'], function(){
 
         //Categories routes

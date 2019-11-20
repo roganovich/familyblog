@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 
 class Uploader extends Model
 {
@@ -12,24 +12,23 @@ class Uploader extends Model
 
     public function uploadload(){
         $i = 1;
-        foreach ($this->images as $f) {
-            $extension = $f->getClientOriginalExtension();
-            $filename = md5($this->object->id) .'.' . $extension ?: 'png';
+        foreach ($this->files as $img) {
+
+            $extension = $img->getClientOriginalExtension();
+            $filename = md5($img->getRealPath()) .'.' . $extension ?: 'png';
             $filepath = $this->path  . $filename;
-            //echo  $filepath.'<br>';
-            //  $f->getFilename()
-            //Storage::disk('public')->put($filepath,  File::get($f));
-            //$img = ImageInt::make($f);
-            //$img->resize(200,200)->save($filepath);
+
+            $img->move(public_path().'/uploads/'.$this->path, $filename);
+
             $img = new Image();
             $img->title = $this->object->title;
             $img->obj_class = get_class($this->object);
             $img->obj_id = $this->object->id;
             $img->img_path = $filepath;
             $img->img_name = $filename;
-            $img->level = $i;
+            $img->level = $i++;
+
             $img->save();
-            $i++;
         }
     }
 
@@ -65,6 +64,11 @@ class Uploader extends Model
     }
 
     public function generatePath(){
-        return  class_basename($this->object). '/' . $this->object->id . '/';
+        $pathObj = class_basename($this->object);
+        $pathObjId =  $this->object->id;
+        $path =  $pathObj. '/' . $pathObjId . '/';
+        Storage::disk('uploads')->makeDirectory($pathObj);
+        Storage::disk('uploads')->makeDirectory($path);
+        return $path;
     }
 }

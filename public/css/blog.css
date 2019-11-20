@@ -1,11 +1,27 @@
+.blogcontainer a{
+  color:#000;
+}
 .blogcontainer .post_item {
   position: relative;
   height: 350px;
+  margin-bottom: 8%;
 }
+
+.blogcontainer .post_title{
+  height: 50px;
+}
+.blogcontainer .post_attr{
+  height: 50px;
+  position: relative;
+}
+
+
 
 .blogcontainer .post_show {
   position: relative;
 }
+
+
 
 .blogcontainer h2 {
   line-height: 1;
@@ -23,7 +39,6 @@
 
 .blogcontainer .post_attr .post_author {
   position: absolute;
-  left: 20px;
   bottom: 5px;
   width: 150px;
   text-align: left;
@@ -31,9 +46,34 @@
 
 .blogcontainer .post_attr .post_date {
   position: absolute;
-  right: 20px;
-  bottom: 5px;
-  width: 150px;
-  text-align: right;
+  right: 0px;
+  bottom: 10px;
+  width: 100px;
+  text-align: left;
 }
 
+.blogcontainer .post_attr .post_author_name{
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+}
+.blogcontainer .post_attr .post_edit{
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+}
+
+.card-img{
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img img{
+  width: 100%;
+}
+.user_avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}

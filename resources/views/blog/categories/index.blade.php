@@ -9,18 +9,16 @@
                     <div class="card">
                         <div class="card-body">
                             <div>
-                                 <a href="{{ route('locale.blog.posts.show',['id'=>$item->id,'locale'=>$locale]) }}" title="@lang('messages.show')">
+                                 <a href="{{ route('locale.blog.categories.show',['slug'=>$item->slug,'locale'=>$locale]) }}" title="@lang('messages.show')">
                                     <span>{{ $item->title }}</span>
                                  </a>
                             </div>
-                            <div>
-                                <span>{!! $item->intro_html !!}</span>
-                            </div>
+
                             <div>
                                 <span>
-                                    @foreach ($item->categories as $category)
-                                        <a href="{{ route('locale.blog.categories.show',['slug'=>$category->category->slug,'locale'=>$locale]) }}" title="@lang('messages.show')">
-                                            <span class="badge badge-info">{{ $category->category->title }}</span>
+                                    @foreach ($item->posts as $post)
+                                        <a href="{{ route('locale.blog.posts.show',['slug'=>$post->slug,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $post->title }}">
+                                            <span class="badge badge-info">{{ $post->title }}</span>
                                         </a>
                                     @endforeach
                                 </span>

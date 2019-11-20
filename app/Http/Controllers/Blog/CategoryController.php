@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Models\Blog\Category;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(Request $request) {
+        parent::__construct($request);
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
     public function index()
     {
-        //
+        $items = $this->blogCategoryRepository->getAllWithPaginator(9);
+        return view('blog.categories.index', ['items'=>$items]);
     }
 
     /**

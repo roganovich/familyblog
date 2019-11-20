@@ -3,6 +3,7 @@
 return [
     'сontent' => 'Содержание',
     'category' => 'Категории',
+    'articles' => 'Статьи',
 
     'count' => 'кол-во',
     'add' => 'Добавить',
@@ -10,9 +11,20 @@ return [
     'edit' => 'Изменить',
     'delete' => 'Удалить',
     'welcome' => 'Добро пожаловать',
+    'yes' => 'Да',
+    'no' => 'Нет',
+    'show' => 'Просмотр',
+    'update' => 'Изменить',
+
 
     //Basic form fields
+    'ID' => 'ID',
+    'id' => 'ID',
+    'images' => 'Изображения',
+    'image' => 'Изображение',
     'title' => 'Заголовок',
+    'content_html' => 'Содержание',
+
     'slug' => 'Адрес URL',
     'description' => 'Описание',
     'created_at' => 'Создан',

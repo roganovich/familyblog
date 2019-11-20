@@ -1,6 +1,6 @@
 <?php
 
-//*******************************************Admin Group ********************************************************/
+//*******************************************Moderate Group ********************************************************/
 //Categories Breadcrumbs
 Breadcrumbs::register('admin.blog.categories.index', function ($breadcrumbs) {
     $breadcrumbs->push(__('messages.categories_list') , route('admin.blog.categories.index'));
