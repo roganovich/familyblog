@@ -1,7 +1,6 @@
 
 .imglist .imgitem img{
-    width: 100%;
-    max-height: 100px;
+
 }
 
 .imglist .imgitem {
@@ -14,4 +13,20 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
+
+}
+.imgitem_delete a{
+    padding: 0px 4px 0px 4px;
+}
+
+.blogcontainer .card {
+    position: relative;
+    height: 350px;
+}
+
+.blogcontainer .post_edit {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    text-align: right;
 }

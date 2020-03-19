@@ -10,12 +10,7 @@
             </div>
             {{ $items->links() }}
         </div>
-
     </div>
-
-    <script src="{{ asset('js/jquery.jscroll.min.js') }}"></script>
-    <script src="{{ asset('js/postScroll.js') }}"></script>
-
 @endsection
 
 

@@ -1,10 +1,9 @@
-<div class="col-md-4">
-    <div class="card post_item">
+<div class="col-md-4 post_item">
+    <div class="card post_body">
         <div class="card-body">
-
-            <div class="card-img">
+            <div class="card-img post-img">
                 <a href="{{ route('locale.blog.posts.show',['slug'=>$item->slug,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->title }}">
-                    <img src="{{$item->thumb}}"/>
+                    <img src="{{ route('locale.images.thumb',['locale'=>$locale, 'img'=>$item->thumb['id'],'width'=>300,'height'=>200]) }}" title="{{ $item->title }}" alt="{{ $item->title }}" class="img-fluid"/>
                 </a>
             </div>
             <div class="post_title">
@@ -19,27 +18,25 @@
                     @endforeach
             </div>
             <div class="post_attr">
-                <span class="post_author_img">
-                    <a href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
-                       <img class="user_avatar" src="{{$item->author->avatar}}" title="{{ $item->author->name }}">
+                    <a class="post_avatar_link" href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
+                        <div class="post_author_img" style="background-image: url('{{$item->author->avatar}}')"> </div>
                     </a>
-                </span>
-                <span class="post_author_name">
+                <div class="post_author_name">
                     <a href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
                        {{ $item->author->name }}
                     </a>
-                </span>
-                <span class="post_date" >
-                 <a href="{{ route('locale.blog.posts.date',['date'=> Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y'),'locale'=>$locale]) }}" title="@lang('messages.show')">
-                    {{ Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y') }}
+                </div>
+                <div class="post_date" >
+                    <a href="{{ route('locale.blog.posts.date',['date'=> Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y'),'locale'=>$locale]) }}" title="@lang('messages.show') {{ Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y') }}">
+                        {{ Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y') }}
                     </a>
-                </span>
+                </div>
                 @if($auth)
-                    <span class="post_edit" >
+                    <div class="post_edit">
                         <a href="{{ route('locale.moderate.blog.posts.edit',['id'=>$item->id,'locale'=>$locale]) }}" title="@lang('messages.update') {{ $item->title }}">
                             <span class="oi oi-pencil"></span>
                         </a>
-                    </span>
+                    </div>
                 @endif
             </div>
         </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Moderate\Blog;
 
 use App\Http\Controllers\Moderate;
-use App\Http\Requests\PostFormRequest;
+use App\Http\Requests\CategoryFormRequest;
 use App\Models\Blog\Category;
 use App\Models\Blog\Post;
 use App\Models\BlogPost;
@@ -11,31 +11,31 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Encore\Admin\Facades\Admin;
-use App\Repositories\BlogPostRepository;
+use App\Repositories\BlogCategoryRepository;
 
-class PostController extends Moderate
+class CategoryController extends Moderate
 {
-    private $blogPostRepository;
+    private $blogCategoryRepository;
 
     public function __construct(Request $request) {
         parent::__construct($request);
-        $this->blogPostRepository = app(BlogPostRepository::class);
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
    public function create()
     {
-        $item = new Post();
-        $categoryList = $this->blogPostRepository->getCategoriesList();
-        return view('moderate.blog.posts.edit',['item'=>$item, 'categoryList'=>$categoryList]);
+        $item = new Category();
+        $categoryList = $this->blogCategoryRepository->getCategoriesList();
+        return view('moderate.blog.categories.edit',['item'=>$item, 'categoryList'=>$categoryList]);
     }
 
-    public function store($locale, PostFormRequest $request)
+    public function store($locale, CategoryFormRequest $request)
     {
         $data = $request->input(); //validate request
-        $item = new Post(); //new model object
+        $item = new Category(); //new model object
         if($item->create($data)){//check succes result
             return redirect()
-                ->route('moderate.blog.posts.index')
+                ->route('moderate.blog.categories.index')
                 ->with(['success'=>'Успешно!']);
         }else{//error msg and redirect
             return back()
@@ -46,18 +46,18 @@ class PostController extends Moderate
 
     public function edit($locale, $id)
     {
-        $item = $this->blogPostRepository->getForeEdit($id);
+        $item = $this->blogCategoryRepository->getForeEdit($id);
         if(empty($item)){
             abort(404);
         }
-        $categoryList = $this->blogPostRepository->getCategoriesList();
-        return view('moderate.blog.posts.edit',['item'=>$item, 'categoryList'=>$categoryList]);
+        $categoryList = $this->blogCategoryRepository->getCategoriesList();
+        return view('moderate.blog.categories.edit',['item'=>$item, 'categoryList'=>$categoryList]);
     }
 
-    public function update($locale, $id, PostFormRequest $request)
+    public function update($locale, $id, CategoryFormRequest $request)
     {
 
-        $item = Post::find($id);
+        $item = Category::find($id);
 
         if(empty($item)){
             return back()
@@ -66,7 +66,7 @@ class PostController extends Moderate
         }
         if($item->update($request->input())){
             return redirect()
-                ->route('locale.moderate.blog.posts.edit', ['id'=>$item->id,'local'=>$this->locale])
+                ->route('locale.moderate.blog.categories.edit', ['id'=>$item->id,'local'=>$this->locale])
                 ->with(['success'=>'Успешно!']);
         }else{
             return back()
@@ -77,9 +77,9 @@ class PostController extends Moderate
 
     public function destroy($locale,$id)
     {
-        if(Post::destroy($id)){
+        if(Category::destroy($id)){
             return redirect()
-                ->route('moderate.blog.posts.index')
+                ->route('moderate.blog.categories.index')
                 ->with(['success'=>'Успешно!']);
         }else{
             return back()

@@ -44,7 +44,10 @@ class Post extends Model
 
     public function getThumbAttribute()
     {
-        return ($this->images)?$this->images[0]['path']:'/images/nothumb.jpg';
+        if($this->images){
+            return $this->images[0];
+        }
+        return  Image::getNoThumb();
     }
 
     public function getImagesAttribute()
@@ -69,11 +72,13 @@ class Post extends Model
     }
 
     public function update(array $attributes = [], array $options = []) {
-        $imgModel = new Uploader();
-        $imgModel->object = $this;
-        $imgModel->files = request()->file('files');
-        //$imgModel->object->clearImages();
-        $imgModel->uploadload();
+        if ($files = request()->file('files')) {
+            $imgModel = new Uploader();
+            $imgModel->object = $this;
+            $imgModel->files = $files;
+            //$imgModel->object->clearImages();
+            $imgModel->uploadload();
+        }
         return parent::update($attributes, $options);
     }
 

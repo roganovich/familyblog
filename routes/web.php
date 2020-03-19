@@ -20,6 +20,8 @@ Route::get('setlocale/{locale}', function ($locale) {
 Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
 
     Route::get('/', 'SiteController@index')->name('locale.site.index');
+    Route::get('/images/thumb/{img}/{width}/{height}', 'ImagesController@thumb')->name('locale.images.thumb');
+
 
     //Moderate Frontend routes Group
     Route::group(['namespace'=>'Moderate','prefix'=>'/moderate','name'=>'moderate.'], function(){
@@ -31,6 +33,12 @@ Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
             Route::get('/posts/edit/{id}', 'PostController@edit')->name('locale.moderate.blog.posts.edit');
             Route::post('/posts/update/{id}', 'PostController@update')->name('locale.moderate.blog.posts.update');
             Route::get('/posts/destroy/{id}', 'PostController@destroy')->name('locale.moderate.blog.posts.destroy');
+
+            Route::get('/categories/create}', 'CategoryController@create')->name('locale.moderate.blog.categories.create');
+            Route::get('/categories/store}', 'CategoryController@store')->name('locale.moderate.blog.categories.store');
+            Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('locale.moderate.blog.categories.edit');
+            Route::post('/categories/update/{id}', 'CategoryController@update')->name('locale.moderate.blog.categories.update');
+            Route::get('/categories/destroy/{id}', 'CategoryController@destroy')->name('locale.moderate.blog.categories.destroy');
         });
     });
     //Blogs Frontend routes Group

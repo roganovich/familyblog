@@ -1,27 +1,15 @@
-.blogcontainer a{
-  color:#000;
-}
 .blogcontainer .post_item {
+  margin-bottom: 30px;
+}
+
+.blogcontainer .post_body {
   position: relative;
   height: 350px;
-  margin-bottom: 8%;
 }
-
-.blogcontainer .post_title{
-  height: 50px;
-}
-.blogcontainer .post_attr{
-  height: 50px;
-  position: relative;
-}
-
-
 
 .blogcontainer .post_show {
   position: relative;
 }
-
-
 
 .blogcontainer h2 {
   line-height: 1;
@@ -32,48 +20,71 @@
   overflow: hidden;
 }
 
+.blogcontainer .post-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.blogcontainer .post_title {
+  height: 40px;
+  overflow: hidden;
+}
+
 .blogcontainer .post_categories {
-  height: 52px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.blogcontainer .post_attr {
+  height: 30px;
   overflow: hidden;
 }
 
 .blogcontainer .post_attr .post_author {
   position: absolute;
+  left: 20px;
   bottom: 5px;
   width: 150px;
   text-align: left;
 }
 
-.blogcontainer .post_attr .post_date {
+.blogcontainer .post_attr .post_author_img {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.blogcontainer .post_attr .post_avatar_link {
   position: absolute;
-  right: 0px;
-  bottom: 10px;
-  width: 100px;
+  left: 20px;
+  bottom: 5px;
+  text-align: right;
+}
+
+.blogcontainer .post_attr .post_author_name {
+  position: absolute;
+  left: 60px;
+  bottom: 5px;
   text-align: left;
 }
 
-.blogcontainer .post_attr .post_author_name{
+.blogcontainer .post_attr .post_date {
   position: absolute;
-  bottom: 10px;
-  left: 50px;
-}
-.blogcontainer .post_attr .post_edit{
-  position: absolute;
-  bottom: 10px;
-  right: 0;
+  right: 35px;
+  bottom: 5px;
+  text-align: right;
 }
 
-.card-img{
-  height: 170px;
-  overflow: hidden;
-  position: relative;
+.blogcontainer .post_edit {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  text-align: right;
 }
 
-.card-img img{
-  width: 100%;
+.blogcontainer .post_attr .post_edit .oi-pencil {
+  color: red;
 }
-.user_avatar{
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
+
