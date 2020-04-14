@@ -1,3 +1,12 @@
+.blogcontainer img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.blogcontainer img[data-src] {
+  opacity: 0;
+}
+
 .blogcontainer .post_item {
   margin-bottom: 30px;
 }
@@ -77,14 +86,36 @@
   text-align: right;
 }
 
-.blogcontainer .post_edit {
+.blogcontainer .post_attr .post_edit {
   position: absolute;
   right: 10px;
-  top: 5px;
+  bottom: 5px;
   text-align: right;
 }
 
 .blogcontainer .post_attr .post_edit .oi-pencil {
   color: red;
+}
+
+#navbarSupportedContent .navbar-brand {
+  width: 100%;
+  text-align: center;
+}
+
+.author {
+  width: 100px;
+  text-align: center;
+}
+
+.author .avatar .post_author_img {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+}
+
+.author .sosiallist img {
+  height: 21px;
 }
 

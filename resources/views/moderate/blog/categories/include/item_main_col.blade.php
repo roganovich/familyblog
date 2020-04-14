@@ -9,27 +9,42 @@
 			</div>
 		@endIf
 
-		@if($item->is_published)
-			<div class="alert alert-success" role="alert">
-				Опубликовано
-			</div>
-		@else
-			<div class="alert alert-secondary" role="alert">
-				Черновик
+		@if ($errors->any())
+			<div class="alert alert-danger inline-block">
+				<ul>
+					@foreach ($errors->get('name') as $message)
+						<li>{{ $message }}</li>
+					@endforeach
+				</ul>
 			</div>
 		@endif
 
 		<div class="form-group">
 				<label for="title">@lang('messages.title')</label>
-				<input type="text"  name="title" class="form-control" value="{{ old('title', $item->title)  }}"/>
+				<input type="text"  name="title" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" value="{{ old('title', $item->title)  }}"/>
+				@if ($errors->has('title'))
+					<span class="invalid-feedback">
+						<strong>{{ $errors->first('title') }}</strong>
+					</span>
+				@endif
 		</div>
 		<div class="form-group">
 				<label for="slug">@lang('messages.slug')</label>
-				<input type="text" class="form-control" name="slug"  value="{{ old('slug', $item->slug)  }}"/>
+				<input type="text" class="form-control {{ $errors->has('slug') ? ' is-invalid' : '' }}" name="slug"  value="{{ old('slug', $item->slug)  }}"/>
+				@if ($errors->has('slug'))
+					<span class="invalid-feedback">
+						<strong>{{ $errors->first('slug') }}</strong>
+					</span>
+				@endif
 		</div>
 		<div class="form-group">
 			<label for="content_html">@lang('messages.description')</label>
-			<textarea name="description" class="form-control">{{ old('description', $item->description)  }}</textarea>
+			<textarea name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}">{{ old('description', $item->description)  }}</textarea>
+			@if ($errors->has('description'))
+				<span class="invalid-feedback">
+						<strong>{{ $errors->first('description') }}</strong>
+					</span>
+			@endif
 		</div>
 		<div class="form-check">
 			<label for="is_published" class="form-check-label">

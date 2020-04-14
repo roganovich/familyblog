@@ -27,6 +27,7 @@ class CategoryFormRequest extends FormRequest
         return [
             'title' => 'required|min:10|max:255',
             'slug' => 'max:255',
+            'description' => 'string|max:500',
         ];
     }
 
@@ -41,8 +42,9 @@ class CategoryFormRequest extends FormRequest
     public function attributes() {
         return [
             'title'=>'Заголовок',
-            'category_id'=>'Категория',
             'description'=>'Контент',
         ];
     }
+
+
 }

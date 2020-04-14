@@ -27,7 +27,8 @@ class Post extends Model
         'content_html',
         'updated_at',
         'created_at',
-        'images'
+        'images',
+        'viewscounter'
     ];
 
     public function categories(){
@@ -72,6 +73,7 @@ class Post extends Model
     }
 
     public function update(array $attributes = [], array $options = []) {
+        dd($_FILES);
         if ($files = request()->file('files')) {
             $imgModel = new Uploader();
             $imgModel->object = $this;
@@ -80,6 +82,13 @@ class Post extends Model
             $imgModel->uploadload();
         }
         return parent::update($attributes, $options);
+    }
+
+
+
+    public function addView(){
+        $this->viewscounter++;
+        $this->save();
     }
 
 

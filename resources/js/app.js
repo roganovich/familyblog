@@ -15,3 +15,4 @@ require('./bootstrap');
         img.removeAttribute('data-src');
     };
 });
+

@@ -2,7 +2,15 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body">
-
+					@if($item->is_published)
+						<div class="alert alert-success" role="alert">
+							Опубликовано
+						</div>
+					@else
+						<div class="alert alert-secondary" role="alert">
+							Черновик
+						</div>
+					@endif
 					@if($item->exists)
 						<div class="form-group">
 								<label for="id">@lang('messages.ID')</label>
@@ -22,20 +30,9 @@
 						</div>
 					<button type="submit" class="btn btn-primary"/>Сохранить</button>
 					@if($item->exists)
-
-						<!--<form method="POST" action="{{ route('locale.moderate.blog.posts.destroy',['id'=>$item->id,'locale'=>$locale]) }}">
-							@method('DELETE')
-							@csrf
-							<button type="submit" class="btn btn-danger"/>Удалить</button>
-						</form>-->
 					@endif
-
 				@endif
-
 			</div>
-
 		</div>
-
 	</div>
-
 </div>

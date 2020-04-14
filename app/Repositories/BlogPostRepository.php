@@ -44,6 +44,7 @@ class BlogPostRepository extends CoreRepository  {
             'author_id',
             'is_published',
             'published_at',
+            'viewscounter',
         ];
 
         $result = $this->startConditions()

@@ -22,11 +22,10 @@ class CategoryController extends Moderate
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
-   public function create()
+   public function create($locale)
     {
         $item = new Category();
-        $categoryList = $this->blogCategoryRepository->getCategoriesList();
-        return view('moderate.blog.categories.edit',['item'=>$item, 'categoryList'=>$categoryList]);
+        return view('moderate.blog.categories.edit',['item'=>$item]);
     }
 
     public function store($locale, CategoryFormRequest $request)
@@ -35,7 +34,7 @@ class CategoryController extends Moderate
         $item = new Category(); //new model object
         if($item->create($data)){//check succes result
             return redirect()
-                ->route('moderate.blog.categories.index')
+                ->route('locale.blog.categories.index', ['local'=>$this->locale])
                 ->with(['success'=>'Успешно!']);
         }else{//error msg and redirect
             return back()
@@ -50,13 +49,11 @@ class CategoryController extends Moderate
         if(empty($item)){
             abort(404);
         }
-        $categoryList = $this->blogCategoryRepository->getCategoriesList();
-        return view('moderate.blog.categories.edit',['item'=>$item, 'categoryList'=>$categoryList]);
+        return view('moderate.blog.categories.edit',['item'=>$item]);
     }
 
-    public function update($locale, $id, CategoryFormRequest $request)
+    public function update($locale, CategoryFormRequest $request, $id)
     {
-
         $item = Category::find($id);
 
         if(empty($item)){
@@ -66,7 +63,7 @@ class CategoryController extends Moderate
         }
         if($item->update($request->input())){
             return redirect()
-                ->route('locale.moderate.blog.categories.edit', ['id'=>$item->id,'local'=>$this->locale])
+                ->route('locale.blog.categories.index', ['local'=>$this->locale])
                 ->with(['success'=>'Успешно!']);
         }else{
             return back()

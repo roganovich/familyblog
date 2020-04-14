@@ -22,7 +22,6 @@ Route::group(['prefix'=>'{locale}','name'=>'locale.'], function($locale){
     Route::get('/', 'SiteController@index')->name('locale.site.index');
     Route::get('/images/thumb/{img}/{width}/{height}', 'ImagesController@thumb')->name('locale.images.thumb');
 
-
     //Moderate Frontend routes Group
     Route::group(['namespace'=>'Moderate','prefix'=>'/moderate','name'=>'moderate.'], function(){
         Route::get('/images/destroy/{id}', 'ImagesController@destroy')->name('locale.moderate.images.destroy');

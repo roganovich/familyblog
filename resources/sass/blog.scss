@@ -87,3 +87,31 @@
 
     }
   }
+#navbarSupportedContent{
+
+  .navbar-brand{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+.author{
+  width: 100px;
+  text-align: center;
+  .avatar{
+    .post_author_img{
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 50px;
+    }
+  }
+  .sosiallist{
+    img{
+      height: 21px;
+    }
+  }
+
+}

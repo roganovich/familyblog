@@ -31,8 +31,9 @@ class PostController extends Controller
     public function show($locale, $slug)
     {
 
-        $item = Post::select(['id', 'title', 'content_html', 'slug','updated_at','author_id'])->where(['slug'=>$slug])->first();
+        $item = Post::select(['id', 'title', 'content_html', 'slug','updated_at','author_id','viewscounter'])->where(['slug'=>$slug])->first();
         $itemCategories = $item->categories;
+        $item->addView();
         if(empty($item)){
             return back()
                 ->withErrors(['msg'=>"Запись #{$slug} не найдена!"])
