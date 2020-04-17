@@ -19,7 +19,7 @@
 								</a>
 							@endforeach
 						</div>
-						
+
 						<div class="post_images row justify-content-center">
 							@foreach ($item->images as $image)
 								<div class="card col-md-4" style="width: 18rem;">

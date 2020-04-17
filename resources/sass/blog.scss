@@ -1,3 +1,5 @@
+$red : #ef0a0a;
+$hover: #c9e2ff;
 .blogcontainer{
     img {
       opacity: 1;
@@ -66,6 +68,10 @@
         left: 60px;
         bottom: 5px;
         text-align: left;
+        a{
+          color: $red;
+          font-weight: bold;
+        }
       }
 
       .post_date{
@@ -96,22 +102,52 @@
 }
 
 
-.author{
-  width: 100px;
+.author {
+  width: 110px;
   text-align: center;
-  .avatar{
-    .post_author_img{
-      width: 100px;
-      height: 100px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: 50px;
+
+  .authorblock{
+    padding: 0 5px;
+    .avatar {
+      .post_author_img {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 50px;
+      }
+    }
+    .autor_name{
+      color: $red;
+      font-weight: bold;
     }
   }
+  .authorblock:hover{
+    background-color: $hover;
+  }
   .sosiallist{
-    img{
-      height: 21px;
+    text-align: center;
+    .social{
+      padding: 2px;
+      img{
+        height: 20px;
+      }
+    }
+    .social:hover{
+      background: $hover;
+      border-radius: 3px;
     }
   }
 
+}
+
+.cblock{
+  text-align:center;
+}
+.logo{width:100px;}
+
+.specword{
+  font-weight:bold;
+  color:$red;
+  text-transform:uppercase
 }

@@ -28,7 +28,9 @@ class CategoryController extends Controller
     public function show($locale, $slug)
     {
         $item = Category::select(['id', 'title', 'slug'])->where(['slug'=>$slug])->first();
+
         $itemPosts = $item->posts;
+
         if(empty($item)){
             return back()
                 ->withErrors(['msg'=>"Запись #{$slug} не найдена!"])

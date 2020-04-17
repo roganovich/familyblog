@@ -24,11 +24,13 @@ class Post extends Model
         'slug',
         'is_published',
         'author_id',
+        'intro_html',
         'content_html',
         'updated_at',
         'created_at',
         'images',
-        'viewscounter'
+        'viewscounter',
+        'vk_id'
     ];
 
     public function categories(){
@@ -73,7 +75,7 @@ class Post extends Model
     }
 
     public function update(array $attributes = [], array $options = []) {
-        dd($_FILES);
+
         if ($files = request()->file('files')) {
             $imgModel = new Uploader();
             $imgModel->object = $this;

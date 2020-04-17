@@ -71,11 +71,6 @@ class CategoryController extends AdminController
         return $form;
     }
 
-    public function update($id)
-    {
-        dd($id);
-        return $this->form()->update($id);
-    }
 
 
 }

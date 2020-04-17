@@ -41,10 +41,6 @@
    </a>
 </div>
 
-@push('scripts')
-   <script src="{{asset('js/script.js')}}"></script>
-@endpush
-
 <style>
    .slidelink{
       background-color: white;

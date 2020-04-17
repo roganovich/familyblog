@@ -12,7 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/js')
-    .js(['resources/js/script.js','node_modules/bootstrap/dist/js/bootstrap.js'], 'public/js')
+    .js(['resources/js/script.js',
+        'resources/js/postScroll.js',
+        'resources/js/jquery.jscroll.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js'
+    ], 'public/js')
     .autoload({
         jquery: ['$', 'window.jQuery', 'jQuery'],
     })

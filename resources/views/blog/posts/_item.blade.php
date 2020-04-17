@@ -12,7 +12,7 @@
 
             <div class="post_categories">
                     @foreach ($item->categories as $category)
-                        <a href="{{ route('locale.blog.categories.show',['slug'=>$category->slug,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $category->category->title }}">
+                        <a href="{{ route('locale.blog.categories.show',['slug'=>$category->category->slug,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $category->category->title }}">
                             <span class="badge badge-info">{{ $category->category->title }}</span>
                         </a>
                     @endforeach

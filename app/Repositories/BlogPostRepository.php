@@ -49,7 +49,7 @@ class BlogPostRepository extends CoreRepository  {
 
         $result = $this->startConditions()
             ->select($columns)
-            ->orderBy('id','DESC')
+            ->orderBy('updated_at','DESC')
             ->with('author', 'categories')
             ->paginate($perPage);
 

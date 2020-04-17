@@ -14,6 +14,11 @@
             {{ $items->links() }}
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{asset('js/script.js')}}"></script>
+    @endpush
+
 @endsection
 
 

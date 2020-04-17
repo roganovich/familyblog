@@ -13,12 +13,15 @@ class Uploader extends Model
     public function uploadload(){
         $i = 1;
         foreach ($this->files as $img) {
-
             $extension = $img->getClientOriginalExtension();
             $filename = md5($img->getRealPath()) .'.' . $extension ?: 'png';
             $filepath = $this->path  . $filename;
+            $full_path = public_path().'/uploads/'.$this->path. $filename;
 
-            $img->move(public_path().'/uploads/'.$this->path, $filename);
+            if (!copy($img->getRealPath(),$full_path)) {
+                echo "не удалось скопировать $img->getRealPath()...\n";
+                dd($img,$img->getRealPath(),$filepath);
+            }
 
             $img = new Image();
             $img->title = $this->object->title;
