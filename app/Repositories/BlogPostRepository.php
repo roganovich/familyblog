@@ -42,6 +42,7 @@ class BlogPostRepository extends CoreRepository  {
             'intro_html',
             'slug',
             'author_id',
+            'updated_at',
             'is_published',
             'published_at',
             'viewscounter',

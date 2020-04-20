@@ -122,8 +122,8 @@ $hover: #c9e2ff;
       font-weight: bold;
     }
   }
-  .authorblock:hover{
-    background-color: $hover;
+  .authorblock:hover .post_author_img{
+    border: 2px solid $red;
   }
   .sosiallist{
     text-align: center;

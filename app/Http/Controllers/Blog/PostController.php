@@ -17,11 +17,11 @@ class PostController extends Controller
         $this->blogPostRepository = app(BlogPostRepository::class);
     }
 
-    public function index()
+   /* public function index()
     {
         $items = $this->blogPostRepository->getAllWithPaginator(9);
         return view('blog.posts.index', ['items'=>$items]);
-    }
+    }*/
     /**
      * Display the specified resource.
      *
@@ -46,7 +46,7 @@ class PostController extends Controller
     {
         $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','author_id'])
             ->where(['author_id'=>$author_id])
-            ->orderBy('updated_at','asc')
+            ->orderBy('updated_at','DESC')
             ->paginate(9);
         return view('blog.posts.index',['items' => $items]);
     }
@@ -55,7 +55,7 @@ class PostController extends Controller
     {
         $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','created_at','author_id'])
             ->where('created_at','like', Carbon::parse( $date)->format('Y-m-d').'%')
-            ->orderBy('updated_at','asc')
+            ->orderBy('updated_at','DESC')
             ->paginate(9);
         return view('blog.posts.index',['items' => $items]);
     }

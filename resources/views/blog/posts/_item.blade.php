@@ -10,13 +10,13 @@
                     <h6>{{ $item->title }}</h6>
             </div>
 
-            <div class="post_categories">
+            <!--<div class="post_categories">
                     @foreach ($item->categories as $category)
                         <a href="{{ route('locale.blog.categories.show',['slug'=>$category->category->slug,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $category->category->title }}">
                             <span class="badge badge-info">{{ $category->category->title }}</span>
                         </a>
                     @endforeach
-            </div>
+            </div>-->
             <div class="post_attr">
                     <a class="post_avatar_link" href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
                         <div class="post_author_img" style="background-image: url('{{$item->author->avatar}}')"> </div>
