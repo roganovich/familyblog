@@ -35,9 +35,9 @@ class Vk{
 
 
         if($this->_user->id==1){
-            $request = new Request('wall.get', ['owner_id' => config('vk.owner_id'),'filter'=>'owner','offset'=>$offset,'count'=>100]);
+            $request = new Request('wall.get', ['owner_id' => config('vk.owner_id'),'filter'=>'owner','count'=>10]);//,'offset'=>$offset
         }else{
-            $request = new Request('wall.get', ['owner_id' => config('vk.owner_id2'),'filter'=>'owner','offset'=>$offset,'count'=>100]);
+            $request = new Request('wall.get', ['owner_id' => config('vk.owner_id2'),'filter'=>'owner','count'=>10]);//,'offset'=>$offset
         }
 
         $response = $api->send($request);
