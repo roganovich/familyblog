@@ -177,12 +177,13 @@ $hover: #c9e2ff;
 }
 #minnav{
   padding: 0 10px;
+  height: 30px;
   .minmenu{
     width: 30%;
     padding: 2px;
     float: left;
     text-align: center;
     font-weight:bold;
-    color:$red;
+
   }
 }

@@ -46,6 +46,7 @@
                     <span>{{$author2->name}}</span>
                 </div>
             </a>
+            <div class="clearfix"></div>
         </div>
         <nav id="headernav" class="d-none d-sm-block navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light bg-white shadow-sm">
             <div class="container">
@@ -142,12 +143,15 @@
             </div>
 
             <img id="header-right" src="/images/header-right.png">
+            <img id="header-left" src="/images/header-left.png">
         </nav>
 
         <main>
             @yield('content')
         </main>
     </div>
+
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('scripts')
     @stack('jscroll')

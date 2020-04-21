@@ -1,10 +1,8 @@
 @extends('layouts.app')
-
-@section('title', $item->title)
-
+@section('title', $item->title )
 @section('content')
 	<div class="container blogcontainer">
-		{{ Breadcrumbs::render('blog.posts.show',['slug'=>$item->slug,'title'=>$item->title,'locale'=>$locale]) }}
+		<!--{{ Breadcrumbs::render('blog.posts.show',['slug'=>$item->slug,'title'=>$item->title,'locale'=>$locale]) }}-->
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card post_show">
@@ -22,7 +20,25 @@
 								</a>
 							@endforeach
 						</div>
-						<div class="">
+
+						<div class="post_images row justify-content-center">
+							@foreach ($item->images as $image)
+								<div class="card col-md-4" style="width: 18rem;">
+									<noindex>
+									<a  rel="blog_img_group" data-fancybox="gallery" href="{{ $image['path'] }}">
+										<img class="card-img-top img-fluid" title="{{ $image['title'] }}"
+											 alt="{{ $image['title'] }}"
+											 src="{{ route('locale.images.thumb',['locale'=>$locale, 'img'=>$image['id'],'width'=>300,'height'=>200]) }}"/>
+									</a>
+									</noindex>
+									<!--<div class="card-body">
+										<p class="card-text">{{$image['title']}}</p>
+									</div>-->
+								</div>
+							@endforeach
+						</div>
+
+						<div class="post_attr">
 							<a class="post_avatar_link" href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
 								<div class="post_author_img" style="background-image: url('{{$item->author->avatar}}')"> </div>
 							</a>
@@ -44,46 +60,16 @@
 								</div>
 							@endif
 						</div>
-						<div class="post_images row justify-content-center">
-							@foreach ($item->images as $image)
-								<div class="card col-md-4" style="width: 18rem;">
-									<a  rel="blog_img_group" data-fancybox="gallery" href="{{ $image['path'] }}">
-										<img class="card-img-top img-fluid" title="{{ $image['title'] }}"
-											 alt="{{ $image['title'] }}"
-											 src="{{ route('locale.images.thumb',['locale'=>$locale, 'img'=>$image['id'],'width'=>300,'height'=>200]) }}"/>
-									</a>
-									<!--<div class="card-body">
-										<p class="card-text">{{$image['title']}}</p>
-									</div>-->
-								</div>
-							@endforeach
-						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-		<script>
-			!window.jQuery && document.write('<script src="jquery-1.4.3.min.js"><\/script>');
-		</script>
-		<script type="text/javascript" src="/package/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-		<script type="text/javascript" src="/package/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo asset('/package/fancybox/jquery.fancybox-1.3.4.css')?>" media="screen" />
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("a[rel=blog_img_group]").fancybox({
-					'transitionIn'		: 'none',
-					'transitionOut'		: 'none',
-					'titlePosition' 	: 'over',
-					'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
-						return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
-					}
-				});
-			})
-		</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script
+
 @endsection
 
 
