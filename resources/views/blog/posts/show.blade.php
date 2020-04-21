@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title', $item->title)
+
 @section('content')
 	<div class="container blogcontainer">
 		{{ Breadcrumbs::render('blog.posts.show',['slug'=>$item->slug,'title'=>$item->title,'locale'=>$locale]) }}
@@ -19,23 +22,7 @@
 								</a>
 							@endforeach
 						</div>
-
-						<div class="post_images row justify-content-center">
-							@foreach ($item->images as $image)
-								<div class="card col-md-4" style="width: 18rem;">
-									<a  rel="blog_img_group" data-fancybox="gallery" href="{{ $image['path'] }}">
-										<img class="card-img-top img-fluid" title="{{ $image['title'] }}"
-											 alt="{{ $image['title'] }}"
-											 src="{{ route('locale.images.thumb',['locale'=>$locale, 'img'=>$image['id'],'width'=>300,'height'=>200]) }}"/>
-									</a>
-									<div class="card-body">
-										<p class="card-text">{{$image['title']}}</p>
-									</div>
-								</div>
-							@endforeach
-						</div>
-
-						<div class="post_attr">
+						<div class="">
 							<a class="post_avatar_link" href="{{ route('locale.blog.posts.author',['author_id'=>$item->author->id,'locale'=>$locale]) }}" title="@lang('messages.show') {{ $item->author->name }}">
 								<div class="post_author_img" style="background-image: url('{{$item->author->avatar}}')"> </div>
 							</a>
@@ -57,6 +44,22 @@
 								</div>
 							@endif
 						</div>
+						<div class="post_images row justify-content-center">
+							@foreach ($item->images as $image)
+								<div class="card col-md-4" style="width: 18rem;">
+									<a  rel="blog_img_group" data-fancybox="gallery" href="{{ $image['path'] }}">
+										<img class="card-img-top img-fluid" title="{{ $image['title'] }}"
+											 alt="{{ $image['title'] }}"
+											 src="{{ route('locale.images.thumb',['locale'=>$locale, 'img'=>$image['id'],'width'=>300,'height'=>200]) }}"/>
+									</a>
+									<!--<div class="card-body">
+										<p class="card-text">{{$image['title']}}</p>
+									</div>-->
+								</div>
+							@endforeach
+						</div>
+
+
 					</div>
 				</div>
 			</div>

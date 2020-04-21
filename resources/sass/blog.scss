@@ -15,7 +15,7 @@ $hover: #c9e2ff;
     }
     .post_body{
       position: relative;
-      height: 350px;
+      height: 300px;
     }
     .post_show{
       position: relative;
@@ -30,6 +30,7 @@ $hover: #c9e2ff;
     .post-img{
       height: 200px;
       overflow: hidden;
+      text-align: center;
     }
     .post_title{
       height: 40px;
@@ -109,6 +110,7 @@ $hover: #c9e2ff;
   .authorblock{
     padding: 0 5px;
     .avatar {
+      padding: 0 10%;
       .post_author_img {
         width: 100px;
         height: 100px;
@@ -150,4 +152,37 @@ $hover: #c9e2ff;
   font-weight:bold;
   color:$red;
   text-transform:uppercase
+}
+
+#headernav{
+  position: relative;
+  #header-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 164px;
+  }
+  #header-left{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 164px;
+  }
+  .headercol{
+    width: 150px;
+    margin: 0 auto;
+    z-index:1;
+  }
+
+}
+#minnav{
+  padding: 0 10px;
+  .minmenu{
+    width: 30%;
+    padding: 2px;
+    float: left;
+    text-align: center;
+    font-weight:bold;
+    color:$red;
+  }
 }

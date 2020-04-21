@@ -8,7 +8,7 @@ use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Encore\Admin\Facades\Admin;
+use App\Helpers\SettingsHelper;
 
 class PostController extends Controller
 {
@@ -46,18 +46,18 @@ class PostController extends Controller
     {
         $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','author_id'])
             ->where(['author_id'=>$author_id])
-            ->orderBy('updated_at','DESC')
+            ->orderBy('created_at','DESC')
             ->paginate(9);
-        return view('blog.posts.index',['items' => $items]);
+        return view('blog.posts.author',['items' => $items,'author'=>SettingsHelper::getUser($author_id)]);
     }
 
     public function date($locale, $date)
     {
         $items = Post::select(['id', 'title', 'intro_html', 'slug','updated_at','created_at','author_id'])
             ->where('created_at','like', Carbon::parse( $date)->format('Y-m-d').'%')
-            ->orderBy('updated_at','DESC')
+            ->orderBy('created_at','DESC')
             ->paginate(9);
-        return view('blog.posts.index',['items' => $items]);
+        return view('blog.posts.date',['items' => $items,'date'=>$date]);
     }
 
 }

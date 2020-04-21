@@ -5,8 +5,15 @@ use App\Models\Settings;
 use App\Models\User;
 class SettingsHelper{
 
+    /*
+     * return settings value
+     */
     public static function getParram($name){
-        return Settings::where(['name'=>$name])->first()->attribute;
+        if($setting = Settings::where(['name'=>$name])->first()){
+            return $setting->attribute;
+        }else{
+            return '';
+        }
     }
 
     public static function getUser($id){

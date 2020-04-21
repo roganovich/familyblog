@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', SettingsHelper::getParram('TITLE'))
 @section('content')
     @include('site.mainslider',['items'=>$items])
     <div class="container blogcontainer">

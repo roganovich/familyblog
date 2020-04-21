@@ -56,9 +56,9 @@ class Vk{
     public function createPost($post){
 
         //текст поста
-        $text = (array_key_exists('text',$post))?$post['text']:[];
+        $text = (array_key_exists('text',$post))?$post['text']:'';
         //дата публикации
-        $date = (array_key_exists('date',$post))?$post['date']:[];
+        $date = (array_key_exists('date',$post))?$post['date']:date('Y-m-d');
         //вложения
         $attachments = (array_key_exists('attachments',$post))?$post['attachments']:[];
 

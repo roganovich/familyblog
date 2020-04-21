@@ -43,4 +43,8 @@ return [
     'posts_list' => 'Список постов',
     'posts_create' => 'Добавить пост',
     'posts_edit' => 'Обновление поста',
+
+    //author
+    'authortitle' => 'Статьи автора',
+    'datetitle' => 'Статьи за',
 ];

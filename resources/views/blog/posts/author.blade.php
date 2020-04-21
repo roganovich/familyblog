@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', SettingsHelper::getParram('TITLE'))
+@section('title', __('messages.authortitle') .' '. $author->name)
 @section('content')
     @include('blog.posts.list',['items'=>$items])
 @endsection

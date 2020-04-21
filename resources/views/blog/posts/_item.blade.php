@@ -1,4 +1,4 @@
-<div class="col-md-4 post_item">
+<div class="col-lg-4 col-md-4  col-sm-6 col-xs-12 post_item">
     <div class="card post_body">
         <div class="card-body">
             <div class="card-img post-img">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="post_date" >
                     <a href="{{ route('locale.blog.posts.date',['date'=> Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y'),'locale'=>$locale]) }}" title="@lang('messages.show') {{ Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y') }}">
-                        {{ Carbon\Carbon::parse( $item->updated_at)->format('d-m-Y') }}
+                        {{ Carbon\Carbon::parse( $item->created_at)->format('d-m-Y') }}
                     </a>
                 </div>
                 @if($auth)
